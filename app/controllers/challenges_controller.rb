@@ -1,11 +1,11 @@
 class ChallengesController < ApplicationController
   def index
     @challenges = Challenge.all
-    render json: @challenges
+    json_response(@challenges)
   end
 
   def show
     @challenge = Challenge.find(params[:id])
-    render json: @challenge
+    json_response(@challenge)
   end
 end
