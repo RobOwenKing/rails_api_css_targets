@@ -4,6 +4,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
+require 'database_cleaner'
 require 'rspec/rails'
 require 'support/factory_bot'
 require 'support/request_spec_helper'
@@ -68,6 +70,20 @@ RSpec.configure do |config|
   # Add methods from '/support' files
   config.include FactoryBot::Syntax::Methods
   config.include RequestSpecHelper, type: :request
+
+  # Set DatabaseCleaner to truncate all tables at the start
+  # but use faster transaction strategy normally
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  # Clean as we go
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
 
 # Configure ShouldaMatchers to use rspec as the test framework and full matcher libraries for rails
