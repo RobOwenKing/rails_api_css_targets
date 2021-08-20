@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Challenge.create(
+  [{
+    name: 'Test',
+    html: '<p>Test!</p>',
+    css: 'p { font-size: 32px; font-family: sans-serif }'
+  }]
+)
