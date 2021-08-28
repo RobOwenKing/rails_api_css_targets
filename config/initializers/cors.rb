@@ -7,10 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    # DEVELOPMENT ONLY!
-    origins 'localhost:8080', '127.0.0.1:8080'
-    # Production
-    # origins
+    origins Rails.application.config.allowed_cors_origins
 
     resource '*',
       headers: :any,
