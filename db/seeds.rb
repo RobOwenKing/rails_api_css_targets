@@ -93,14 +93,14 @@ button:active {
 }
 
 .primary-btn {
-  border: 1px solid #3958AD;
+  border: 1px solid #3958ad;
   color: white;
-  background-color: #3958AD;
+  background-color: #3958ad;
 }
 
 .primary-btn:hover,
 .primary-btn:focus {
-  background-color: #2E468A;
+  background-color: #2e468a;
 }
 
 .secondary-btn {
@@ -146,11 +146,11 @@ button::after {
 }
 
 .yellow-btn::after {
-  background-color: #F3E17E;
+  background-color: #f3e17e;
 }
 
 .blue-btn::after {
-  background-color: #9DB9F6;
+  background-color: #9db9f6;
 }
 
 button:hover::before,
@@ -161,9 +161,52 @@ button:focus::after {
 }'
   },
   {
-    name: 'Submit button',
-    html: '<!-- -->',
-    css: '/* I\'m a comment! */'
+    name: 'Simple search',
+    html: '<form>
+  <input type="text" placeholder="Search..." name="search">
+  <button type="submit">
+    <i class="fa fa-search"></i>
+  </button>
+</form>',
+    css: '* {
+  box-sizing: border-box;
+}
+
+form input,
+form button {
+  float: left;
+  font-size: 1rem;
+  padding: 2px 8px;
+}
+
+form input {
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #aaa;
+}
+
+form button {
+  border-radius: 0 4px 4px 0;
+  border: 2px solid #133B96;
+  background-color: #133B96;
+  color: white;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  input {
+    width: 6rem;
+    transition: width 0.2s
+  }
+
+  input:focus {
+    width: 16rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  input {
+    width: 16rem;
+  }
+}'
   },
   {
     name: 'Basic form',
@@ -195,7 +238,7 @@ button:focus::after {
 body {
   display: flex;
   justify-content: center;
-  background-color: #3B414D;
+  background-color: #3b414d;
   color: white;
   font-family: sans-serif;
 }
@@ -233,21 +276,45 @@ input {
     html: '<form>
   <label for="comment">Join the discussion:</label>
 
-  <textarea id="comment" name="comment"
-            rows="5" cols="32"
-            placeholder="Add your comment here"></textarea>
+  <div class="comment-positioning">
+    <textarea id="comment" name="comment"
+              rows="5" cols="32"
+              placeholder="Add your comment here"></textarea>
 
-  <button type="submit">Submit!</button>
+    <button type="submit">Submit!</button>
+  </div>
 </form>',
-    css: '/* TODO: I need more work! */
-
-textarea {
-  resize: none;
-  display: block;
+    css: '.comment-positioning {
+  position: relative;
+  width: min-content;
+  height: min-content;
 }
 
-textarea::placeholder {
-  font-style: italic;
+label {
+  font-size: 1rem;
+  font-family: sans-serif;
+}
+
+textarea {
+  font-size: 1rem;
+  border: 1px solid black;
+  margin-top: 4px;
+}
+
+button {
+  position: absolute;
+  bottom: -0.5rem;
+  right: -1rem;
+  font-size: 1rem;
+  border: 1px solid black;
+  background-color: #2B7359;
+  color: white;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(34, 89, 69);
 }'
   },
   {
@@ -263,7 +330,7 @@ body {
 }
 
 header {
-  background-color: #F4655E;
+  background-color: #f4655e;
   text-align: center;
 
   padding: 1rem;
@@ -281,30 +348,222 @@ header:before {
 
   border: 4px solid black;
 }'
+  },
+  {
+    name: 'Profile photos',
+    html: '<h1>Meet Our Team</h1>
+<a href="https://unsplash.com/@armedshutter" class="profile-card">
+  <img src="https://source.unsplash.com/sibVwORYqs0/576x384" alt="black haired man making face">
+  <div class="profile-text">
+    <h2 class="text-pink">Ayo Ogunseinde</h2>
+    <p>Team member</p>
+  </div>
+</a>
+<a href="https://unsplash.com/@heftiba" class="profile-card">
+  <img src="https://source.unsplash.com/O3ymvT7Wf9U/246x369" alt="woman standing near blue steel gate">
+  <div class="profile-text">
+    <h2 class="text-blue">Toa Heftiba</h2>
+    <p>Team member</p>
+  </div>
+</a>
+<a href="https://unsplash.com/@akramhuseyn" class="profile-card">
+  <img src="https://source.unsplash.com/76kTuuilZTI/370x556" alt="russian blue cat on white textile">
+  <div class="profile-text">
+    <h2 class="text-pink">Akram Huseyn</h2>
+    <p>Team member</p>
+  </div>
+</a>
+<p>All photos are by the named artists, if not their own profile pictures.</p>',
+    css: '.profile-card {
+  display: flex;
+  align-items: center;
+  margin: 1em;
+  text-decoration: none;
+}
+
+img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(0.6);
+}
+
+.profile-card:hover img {
+  filter: grayscale(0);
+}
+
+.profile-card:hover .text-pink {
+  color: #f15486;
+}
+
+.profile-card:hover .text-blue {
+  color: #106c8f;
+}
+
+.profile-text {
+  margin-left: 0.5rem;
+}
+
+.profile-text h2,
+.profile-text p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-text h2 {
+  color: #000;
+}
+
+.profile-text p {
+  color: #333;
+}'
+  },
+  {
+    name: 'Neumorphic buttons',
+    html: '<div class="container">
+  <h1>Neumorphism</h1>
+  <p>TODO</p>
+  <p>TODO</p>
+
+  <nav>
+    <i class="fa fa-arrow-left"></i>
+    <i class="fa fa-arrow-right"></i>
+  </nav>
+</div>',
+    css: 'body {
+  font-family: sans-serif;
+  background-color: #383638;
+  color: #fefefe;
+}
+
+.container {
+  width: 300px;
+  margin: auto;
+}
+
+p {
+  opacity: 0.7;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav .fa {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  padding: 0.5rem;
+  border-radius: 50%;
+  box-shadow: 2px 2px 4px #181618,
+    -2px -2px 4px #585658;
+  cursor: pointer;
+}
+
+nav .fa:hover {
+  box-shadow: 2px 2px 4px #585658,
+    -2px -2px 4px #181618;
+}'
+  },
+  {
+    name: 'Simple cards',
+    html: '<h1>Where will you go?</h1>
+<div class="cards">
+  <div class="destination-card">
+    <img src="https://source.unsplash.com/rNLucmInugQ/326x184" alt="moai, monumental human head statues on Rapa Nui">
+    <div class="card-text">
+      <h2>Rapa Nui</h2>
+      <p>Lorem ipsum Rapa Nui sit amet consectetur adipisicing elit. Vitae, cumunque. <a href="https://unsplash.com/photos/rNLucmInugQ">See more</a>.</p>
+    </div>
+  </div>
+  <div class="destination-card">
+    <img src="https://source.unsplash.com/xcPw1-5OHTk/500x334" alt="old and modern high-rise buildings in Warsaw lit up at night">
+    <div class="card-text">
+      <h2>Warsaw</h2>
+      <p>Hic Warsaw, ipsam suscipit mollitia perferendis harum pariatur. Sunt, recusandae. <a href="https://unsplash.com/photos/xcPw1-5OHTk">See more</a>.</p>
+    </div>
+  </div>
+  <div class="destination-card">
+    <img src="https://source.unsplash.com/DDiLYt_F88w/555x400" alt="the Taj Mahal and its reflection in front of a sunset-tinged sky">
+    <div class="card-text">
+      <h2>Agra</h2>
+      <p>Iure, voluptatem consectetur soluta perspiciatis minus aut Taj Mahal. Necessitatibus. <a href="https://unsplash.com/photos/DDiLYt_F88w">See more</a>.</p>
+    </div>
+  </div>
+</div>',
+    css: '.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.destination-card {
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  padding: 8px;
+  margin: 0 12px 12px 0;
+  max-width: 300px;
+  height: min-content;
+  position: relative;
+  background-color: white;
+}
+
+.destination-card:before {
+  position: absolute;
+  content: \'\';
+  left: 0;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  z-index: -1;
+
+  border: 1px solid black;
+  transform: rotate(-2deg);
+}
+
+img {
+  width: 100%
+}
+
+.destination-card h2 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.destination-card p {
+  margin: 4px auto;
+}'
+  },
+  {
+    name: 'Old-timey text',
+    html: '<h1>Lorem Ipsum</h1>
+<div class="text">
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti voluptate aut neque. Similique culpa ex hic minima quibusdam, sint quas quos repellat a distinctio veniam voluptatibus harum assumenda quaerat exercitationem vel cum. Asperiores sint quidem, laborum, veniam illo enim, modi excepturi sapiente aspernatur perspiciatis aut, inventore.</p>
+  <p>Ab reiciendis, amet a voluptate at tempore, earum facere inventore dignissimos quas, eaque fuga exercitationem tenetur provident.</p>
+  <p>Consequatur animi cupiditate, accusamus voluptatibus aperiam tempore, doloremque dolore neque deserunt veritatis molestias dolor illum minus totam quis! Unde, cumque dicta, nisi obcaecati amet inventore rerum architecto ullam facere asperiores labore ex et ea. Facere, rerum, vel.</p>
+</div>',
+    css: '/* TODO */
+
+h1 {
+  text-align: center;
+}
+
+.text {
+  columns: 200px 2;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+p {
+  text-align: justify;
+  margin-top: 0;
+}
+
+p:first-child::first-letter {
+  font-size: 300%;
+  line-height: 100%;
+  float: left;
+}'
   }
 ])
-
-# TODO: Only update CSS on input
-# Currently, the below reloads the images *every* keystroke
-#  {
-#    name: 'Profile photos',
-#    html: '<div class="profile-card">
-#  <img src="https://source.unsplash.com/sibVwORYqs0/576x384" alt="">
-#  <p></p>
-#</div>
-#<div class="profile-card">
-#  <img src="https://source.unsplash.com/AJIqZDAUD7A/600x400" alt="">
-#  <p></p>
-#</div>
-#<div class="profile-card">
-#  <img src="https://source.unsplash.com/76kTuuilZTI/370x556" alt="">
-#  <p></p>
-#</div>
-#<p>All photos from <a href="https://unsplash.com/">Unsplash</a>.</p>',
-#    css: 'img {
-#  width: 56px;
-#  height: 56px;
-#  border-radius: 50%;
-#  object-fit: cover;
-#}'
-#  }
